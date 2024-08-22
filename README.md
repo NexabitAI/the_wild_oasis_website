@@ -20,6 +20,31 @@
 
 <img src="https://i.ibb.co/TRpGCJg/4.png" alt="project-screenshot" width="full" height="400/">
 
+<h2>🛠️ Installation Steps:</h2>
+
+<p>1. Requirements</p>
+
+```
+Node Npm Git
+```
+
+<p>2. Clone Repository</p>
+
+```
+https://github.com/HamzaBilal527/wildoasisreact.git
+```
+
+<p>3. Installations</p>
+
+```
+npm intall
+```
+
+<p>4. Running</p>
+
+```
+npm run dev
+```
   
   
 <h2>💻 Built with</h2>
