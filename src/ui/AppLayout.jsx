@@ -15,6 +15,7 @@ const Main = styled.main`
   padding: 4rem 4.8rem 6.4rem;
   overflow: scroll;
 
+  //For removing Scrolls
   overflow: -moz-hidden-none;
   -ms-overflow-style: none;
   scrollbar-width: none;
