@@ -38,7 +38,8 @@ function UpdateSettingsForm() {
           type="number"
           id="min-nights"
           defaultValue={minBookingLength}
-          disabled={isUpdating}
+          // disabled={isUpdating}
+          disabled={true}
           onBlur={(e) =>
             handleUpdate(e, "minBookingLength")
           }
@@ -50,7 +51,8 @@ function UpdateSettingsForm() {
           type="number"
           id="max-nights"
           defaultValue={maxBookingLength}
-          disabled={isUpdating}
+          // disabled={isUpdating}
+          disabled={true}
           onBlur={(e) =>
             handleUpdate(e, "maxBookingLength")
           }
@@ -62,7 +64,8 @@ function UpdateSettingsForm() {
           type="number"
           id="max-guests"
           defaultValue={maxGuestsPerBooking}
-          disabled={isUpdating}
+          // disabled={isUpdating}
+          disabled={true}
           onBlur={(e) =>
             handleUpdate(e, "maxGuestsPerBooking")
           }
@@ -74,7 +77,8 @@ function UpdateSettingsForm() {
           type="number"
           id="breakfast-price"
           defaultValue={breakfastPrice}
-          disabled={isUpdating}
+          // disabled={isUpdating}
+          disabled={true}
           onBlur={(e) => handleUpdate(e, "breakfastPrice")}
         />
       </FormRow>

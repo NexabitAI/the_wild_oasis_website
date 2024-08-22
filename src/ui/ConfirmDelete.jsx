@@ -43,10 +43,16 @@ function ConfirmDelete({
         </Button>
         <Button
           variation="danger"
-          disabled={disabled}
+          disabled={true}
           onClick={onConfirm}>
           Delete
         </Button>
+        {/* <Button
+          variation="danger"
+          disabled={disabled}
+          onClick={onConfirm}>
+          Delete
+        </Button> */}
       </div>
     </StyledConfirmDelete>
   );

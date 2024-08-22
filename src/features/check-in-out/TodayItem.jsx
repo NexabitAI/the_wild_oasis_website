@@ -47,10 +47,18 @@ function TodayItem({ activity }) {
         <Button
           size="small"
           variation="primary"
-          as={Link}
-          to={`/checkin/${id}`}>
+          disabled={true}
+          as={Link}>
           Check in
         </Button>
+        // <Button
+        //   size="small"
+        //   variation="primary"
+        //   disabled={true}
+        //   as={Link}
+        //   to={`/checkin/${id}`}>
+        //   Check in
+        // </Button>
       )}
 
       {status === "checked-in" && (

@@ -66,9 +66,7 @@ function UpdatePasswordForm() {
           variation="secondary">
           Cancel
         </Button>
-        <Button disabled={isUpdating}>
-          Update password
-        </Button>
+        <Button disabled={true}>Update password</Button>
       </FormRow>
     </Form>
   );

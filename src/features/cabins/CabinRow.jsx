@@ -67,14 +67,14 @@ function CabinRow({ cabin }) {
   } = cabin;
 
   function handleDuplicate() {
-    createCabin({
-      name: `Copy of ${name}`,
-      maxCapacity,
-      regularPrice,
-      discount,
-      image,
-      description,
-    });
+    // createCabin({
+    //   name: `Copy of ${name}`,
+    //   maxCapacity,
+    //   regularPrice,
+    //   discount,
+    //   image,
+    //   description,
+    // });
   }
 
   return (

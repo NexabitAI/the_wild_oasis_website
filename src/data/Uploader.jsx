@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { isFuture, isPast, isToday } from "date-fns";
 import supabase from "../services/supabase";
 import Button from "../ui/Button";
@@ -15,28 +15,43 @@ import { guests } from "./data-guests";
 //   breakfastPrice: 15,
 // };
 
+const FIVE_DAYS_IN_MS = 5 * 24 * 60 * 60 * 1000;
+
 async function deleteGuests() {
-  const { error } = await supabase.from("guests").delete().gt("id", 0);
+  const { error } = await supabase
+    .from("guests")
+    .delete()
+    .gt("id", 0);
   if (error) console.log(error.message);
 }
 
 async function deleteCabins() {
-  const { error } = await supabase.from("cabins").delete().gt("id", 0);
+  const { error } = await supabase
+    .from("cabins")
+    .delete()
+    .gt("id", 0);
   if (error) console.log(error.message);
 }
 
 async function deleteBookings() {
-  const { error } = await supabase.from("bookings").delete().gt("id", 0);
+  const { error } = await supabase
+    .from("bookings")
+    .delete()
+    .gt("id", 0);
   if (error) console.log(error.message);
 }
 
 async function createGuests() {
-  const { error } = await supabase.from("guests").insert(guests);
+  const { error } = await supabase
+    .from("guests")
+    .insert(guests);
   if (error) console.log(error.message);
 }
 
 async function createCabins() {
-  const { error } = await supabase.from("cabins").insert(cabins);
+  const { error } = await supabase
+    .from("cabins")
+    .insert(cabins);
   if (error) console.log(error.message);
 }
 
@@ -56,8 +71,12 @@ async function createBookings() {
   const finalBookings = bookings.map((booking) => {
     // Here relying on the order of cabins, as they don't have and ID yet
     const cabin = cabins.at(booking.cabinId - 1);
-    const numNights = subtractDates(booking.endDate, booking.startDate);
-    const cabinPrice = numNights * (cabin.regularPrice - cabin.discount);
+    const numNights = subtractDates(
+      booking.endDate,
+      booking.startDate
+    );
+    const cabinPrice =
+      numNights * (cabin.regularPrice - cabin.discount);
     const extrasPrice = booking.hasBreakfast
       ? numNights * 15 * booking.numGuests
       : 0; // hardcoded breakfast price
@@ -96,12 +115,25 @@ async function createBookings() {
 
   console.log(finalBookings);
 
-  const { error } = await supabase.from("bookings").insert(finalBookings);
+  const { error } = await supabase
+    .from("bookings")
+    .insert(finalBookings);
   if (error) console.log(error.message);
 }
 
 function Uploader() {
   const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    const now = Date.now();
+    const lastRun = localStorage.getItem("lastRun");
+
+    if (!lastRun || now - lastRun >= FIVE_DAYS_IN_MS) {
+      // If no record of last run or 5 days have passed
+      uploadAll();
+      localStorage.setItem("lastRun", now); // Update last run timestamp
+    }
+  }, []);
 
   async function uploadAll() {
     setIsLoading(true);
@@ -126,28 +158,28 @@ function Uploader() {
   }
 
   return (
-    <div
-      style={{
-        marginTop: "auto",
-        backgroundColor: "#e0e7ff",
-        padding: "8px",
-        borderRadius: "5px",
-        textAlign: "center",
-        display: "flex",
-        flexDirection: "column",
-        gap: "8px",
-      }}
-    >
-      <h3>SAMPLE DATA</h3>
+    // <div
+    //   style={{
+    //     marginTop: "auto",
+    //     backgroundColor: "#e0e7ff",
+    //     padding: "8px",
+    //     borderRadius: "5px",
+    //     textAlign: "center",
+    //     display: "flex",
+    //     flexDirection: "column",
+    //     gap: "8px",
+    //   }}>
+    //   <h3>SAMPLE DATA</h3>
 
-      <Button onClick={uploadAll} disabled={isLoading}>
-        Upload ALL
-      </Button>
+    //   <Button onClick={uploadAll} disabled={isLoading}>
+    //     Upload ALL
+    //   </Button>
 
-      <Button onClick={uploadBookings} disabled={isLoading}>
-        Upload bookings ONLY
-      </Button>
-    </div>
+    //   <Button onClick={uploadBookings} disabled={isLoading}>
+    //     Upload bookings ONLY
+    //   </Button>
+    // </div>
+    <div></div>
   );
 }
 
