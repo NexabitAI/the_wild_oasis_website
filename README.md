@@ -2,7 +2,7 @@
 
 <p align="center"><img src="https://i.ibb.co/x1C5nkS/2.png" alt="project-image"></p>
 
-<p id="description">This project is created by using React React Query Styled Components Context API and Supabase.</p>
+<p id="description">This project is created by using React React Query Styled Components Context API and Supabase. This app is used as a hotel's internal management app where the employees can manage the guests.</p>
 
 <h2>Project Screenshots:</h2>
 
