@@ -15,7 +15,7 @@ import { guests } from "./data-guests";
 //   breakfastPrice: 15,
 // };
 
-const FIVE_DAYS_IN_MS = 5 * 24 * 60 * 60 * 1000;
+const ONE_DAYS_IN_MS = 1000 * 60;
 
 async function deleteGuests() {
   const { error } = await supabase
@@ -123,16 +123,22 @@ async function createBookings() {
 
 function Uploader() {
   const [isLoading, setIsLoading] = useState(false);
+  const [isUploading, setIsUploading] = useState(false);
+
+  // useEffect(() => {
+  //   const now = Date.now();
+  //   const lastRun = localStorage.getItem("lastRun");
+
+  //   if (!lastRun || now - lastRun >= ONE_DAYS_IN_MS) {
+  //     // If no record of last run or 5 days have passed
+  //     uploadAll();
+  //     localStorage.setItem("lastRun", now); // Update last run timestamp
+  //   }
+  // }, []);
 
   useEffect(() => {
-    const now = Date.now();
-    const lastRun = localStorage.getItem("lastRun");
-
-    if (!lastRun || now - lastRun >= FIVE_DAYS_IN_MS) {
-      // If no record of last run or 5 days have passed
-      uploadAll();
-      localStorage.setItem("lastRun", now); // Update last run timestamp
-    }
+    uploadAll();
+    console.log("Uploading");
   }, []);
 
   async function uploadAll() {
