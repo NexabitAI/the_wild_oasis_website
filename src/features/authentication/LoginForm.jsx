@@ -78,11 +78,11 @@ function LoginForm() {
             {!isLoading ? "Login" : <SpinnerMini />}
           </Button>
         </FormRowVertical>
-        <FormRowVertical>
+        {/* <FormRowVertical>
           <span>
             A portfolio project developed by the Hamza Bilal
           </span>
-        </FormRowVertical>
+        </FormRowVertical> */}
       </Form>
     </>
   );
